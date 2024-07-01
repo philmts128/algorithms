@@ -8,21 +8,23 @@ public class Test1
 {
     public static void main(String[] args)
     {
-        var arr = new Array();
-        arr.append(5);
-        arr.append(3);
-        arr.append(2);
-        arr.append(1);
-        arr.append(555);
-        arr.append(333);
-        arr.append(222);
-        arr.append(111);
-        arr.append(50);
-        arr.append(30);
-        arr.append(20);
-        arr.append(10);
+        var nums = new Array<Integer>(5,3,2,1,555,333);
+        nums.append(222);
+        nums.append(111);
+        nums.append(50);
+        nums.append(30);
+        nums.append(20);
+        nums.append(10);
 
-        for (int i = 0; i < arr.length(); ++i)
-            System.out.print(arr.get(i) + " ");
+        for (int i = 0; i < nums.length(); ++i)
+            System.out.print(nums.get(i) + " ");
+
+        var games = new Array<String>("Skyrim", "Oblivion", "Morrowind");
+        games.append("Dragon Age: Origins");
+        games.append("Star Wars: Knights of the Old Republic");
+        games.append("Mass Effect");
+
+        for (int i = 0; i < games.length(); ++i)
+            System.out.println(games.get(i));
     }
 }

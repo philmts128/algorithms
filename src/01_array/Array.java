@@ -6,11 +6,11 @@
 
 
 //----------------------------------------
-public class Array
+public class Array<T>
 {
     //----------------------------------------
     private final int MUL_CAP = 8;
-    private int[] data = null;
+    private Object[] data = null;
     private int length;
     private int capacity;
 
@@ -23,7 +23,7 @@ public class Array
     }
 
     //----------------------------------------
-    Array(int... items)
+    Array(T... items)
     {
         var len = items.length;
         this.length = len;
@@ -33,33 +33,33 @@ public class Array
     }
 
     //----------------------------------------
-    public void append(int item)
+    public void append(T item)
     {
         if (this.length == this.capacity) {
             this.capacity += MUL_CAP;
             this.reserve(this.capacity);
         }
 
-        this.data[this.length] = item;
+        this.data[this.length] = (Object)item;
         this.length += 1;
     }
 
     //----------------------------------------
-    public void set(int index, int value)
+    public void set(int index, T value)
     {
         if (index < 0 || index >= this.length)
             throw new ArrayIndexOutOfBoundsException("");
 
-        this.data[index] = value;
+        this.data[index] = (Object)value;
     }
 
     //----------------------------------------
-    public int get(int index)
+    public T get(int index)
     {
         if (index < 0 || index >= this.length)
             throw new ArrayIndexOutOfBoundsException("");
 
-        return this.data[index];
+        return (T)this.data[index];
     }
 
     //----------------------------------------
@@ -75,23 +75,23 @@ public class Array
     }
 
     //----------------------------------------
-    private void reserve(int cap, int... data)
+    private void reserve(int cap, T... data)
     {
         this.reserve(cap);
         int x=0;
-        for (int i : data)
-            this.data[x++] = i;
+        for (T i : data)
+            this.data[x++] = (Object)i;
     }
 
     //----------------------------------------
     private void reserve(int cap)
     {
         if (this.data == null) {
-            this.data = new int[cap];
+            this.data = new Object[cap];
             return;
         }
 
-        int[] ndata = new int[cap];
+        var ndata = new Object[cap];
         int lim = (this.length > cap) ? cap : this.length;
         for (int i = 0; i < lim; ++i) {
             ndata[i] = this.data[i];
@@ -100,3 +100,6 @@ public class Array
         this.data = ndata;
     }
 }
+
+
+
