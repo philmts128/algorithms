@@ -45,6 +45,95 @@ public class Array<T>
     }
 
     //----------------------------------------
+    public void preppend(T item)
+    {
+        if (this.isEmpty()) {
+            this.append(item);
+            return;
+        }
+
+        if (this.length == this.capacity) {
+            this.capacity += MUL_CAP;
+            this.reserve(this.capacity);
+        }
+
+        this.rightShift(0);
+        this.data[0] = (Object)item;
+        this.length += 1;
+    }
+
+    //----------------------------------------
+    public void insert(int index, T item)
+    {
+        if (index < 0 || index >= this.length)
+            throw new ArrayIndexOutOfBoundsException("");
+
+        if (index == 0 && this.isEmpty()) {
+            this.append(item);
+            return;
+        }
+
+        if (this.length == this.capacity) {
+            this.capacity += MUL_CAP;
+            this.reserve(this.capacity);
+        }
+
+        this.rightShift(index);
+        this.data[index] = (Object)item;
+        this.length += 1;
+    }
+
+    //----------------------------------------
+    public T removeBack()
+    {
+        if (this.length == 0)
+            return null;
+
+        var temp = this.data[this.length - 1];
+        this.length -= 1;
+
+        var cap = this.nextCap(this.length);
+        if (this.capacity > cap)
+            this.reserve(cap);
+
+        return (T)temp;
+    }
+
+    //----------------------------------------
+    public T removeFront()
+    {
+        if (this.length == 0)
+            return null;
+
+        var temp = this.data[0];
+        this.leftShift(0);
+        this.length -= 1;
+
+        var cap = this.nextCap(this.length);
+        if (this.capacity > cap)
+            this.reserve(cap);
+
+        return (T)temp;
+    }
+
+    //----------------------------------------
+    public T remove(int index)
+    {
+        if (index < 0 || index >= this.length)
+            throw new ArrayIndexOutOfBoundsException("");
+
+        var temp = this.data[index];
+        this.leftShift(index);
+        this.length -= 1;
+
+        var cap = this.nextCap(this.length);
+        if (this.capacity > cap)
+            this.reserve(cap);
+
+        return (T)temp;
+    }
+
+    //----------------------------------------
     public void set(int index, T value)
     {
         if (index < 0 || index >= this.length)
@@ -63,9 +152,46 @@ public class Array<T>
     }
 
     //----------------------------------------
+    public int find(T item)
+    {
+        for (int i = 0; i < this.length; ++i) {
+            if (((T)this.data[i]).equals(item)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    //----------------------------------------
     public int capacity()    { return this.capacity; }
     public int length()      { return this.length; }
     public boolean isEmpty() { return (this.length == 0); }
+    public boolean exists(T item) { return (this.find(item) != -1); }
+
+    //----------------------------------------
+    private void rightShift(int start)
+    {
+        int len = this.length;
+        int k = len-1;
+
+        for (int i = len; i > start; --i) {
+            this.data[i] = this.data[k];
+            k -= 1;
+        }
+    }
+
+    //----------------------------------------
+    private void leftShift(int start)
+    {
+        int len = this.length;
+        int k = start+1;
+
+        for (int i = start; i < len; ++i) {
+            this.data[i] = this.data[k];
+            k += 1;
+        }
+    }
 
     //----------------------------------------
     private int nextCap(int cap)
@@ -100,6 +226,3 @@ public class Array<T>
         this.data = ndata;
     }
 }
-
-
-
