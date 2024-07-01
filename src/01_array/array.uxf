@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>80</y>
+      <w>210</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>Array
+--
+- data: int[]
+- length: int
+- capacity: int
+- MUL_CAP: final int
+--
+&lt;&lt;Array&gt;&gt;()
+&lt;&lt;Array&gt;&gt;(data: int...)
++ append(int value);
++ get(index: int)
++ set(index: int, value: int)
++ length(): int
++ isEmpty(): boolean
++ capacity(): boolean
+- nextCap(): int
+- reserve(capacity: int)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
