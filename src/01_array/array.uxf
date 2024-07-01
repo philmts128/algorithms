@@ -6,26 +6,36 @@
     <coordinates>
       <x>80</x>
       <y>80</y>
-      <w>210</w>
-      <h>260</h>
+      <w>260</w>
+      <h>450</h>
     </coordinates>
-    <panel_attributes>Array
+    <panel_attributes>Array&lt;T&gt;
 --
-- data: int[]
+- data: Object[]
 - length: int
 - capacity: int
 - MUL_CAP: final int
 --
 &lt;&lt;Array&gt;&gt;()
-&lt;&lt;Array&gt;&gt;(data: int...)
-+ append(int value);
+&lt;&lt;Array&gt;&gt;(data: T...)
++ append(value: T);
++ preppend(value: T)
++ insert(index: int, item: T)
++ removeBack(): T
++ removeFront(): T
++ remove(index: int): T
 + get(index: int)
-+ set(index: int, value: int)
++ set(index: int, value: T)
++ find(item: T): int
++ exists(): boolean
 + length(): int
 + isEmpty(): boolean
 + capacity(): boolean
+- rightShift(start: int)
+- leftShift(start: int)
 - nextCap(): int
 - reserve(capacity: int)
+- reserve(capacity: int, data: T...)
 </panel_attributes>
     <additional_attributes/>
   </element>
