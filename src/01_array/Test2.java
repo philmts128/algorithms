@@ -14,14 +14,14 @@ public class Test2
         fruits.append("banana");
         fruits.preppend("lemon");
 
-        for (int i = 0; i < fruits.length(); ++i)
-            System.out.println(fruits.get(i));
+        for (String f : fruits)
+            System.out.println(f);
 
         fruits.removeFront();
         fruits.removeBack();
 
         System.out.println("\n* after deleting fron and end:");
-        for (int i = 0; i < fruits.length(); ++i)
-            System.out.println(fruits.get(i));
+        for (String f : fruits)
+            System.out.println(f);
     }
 }

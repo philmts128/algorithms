@@ -4,9 +4,12 @@
 */
 
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 
 //----------------------------------------
-public class Array<T>
+public class Array<T> implements Iterable<T>
 {
     //----------------------------------------
     private final int MUL_CAP = 8;
@@ -224,5 +227,39 @@ public class Array<T>
         }
 
         this.data = ndata;
+    }
+
+    //----------------------------------------
+    @Override
+    public Iterator<T> iterator()
+    {
+        return new ArrayIt(this);
+    }
+
+    //----------------------------------------
+    private class ArrayIt implements Iterator<T>
+    {
+        //----------------------------------------
+        private int index = 0;
+        private Array array = null;
+
+        //----------------------------------------
+        ArrayIt(Array arr) { this.array = arr; }
+
+        @Override
+        public boolean hasNext() { return (index < this.array.length()); }
+
+        //----------------------------------------
+        @Override
+        public T next()
+        {
+            if (!this.hasNext()) {
+                throw new NoSuchElementException();
+            }
+
+            T temp = (T)this.array.get(this.index);
+            this.index += 1;
+            return temp;
+        }
     }
 }
