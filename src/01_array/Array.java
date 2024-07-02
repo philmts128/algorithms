@@ -171,6 +171,8 @@ public class Array<T> implements Iterable<T>
     public int length()      { return this.length; }
     public boolean isEmpty() { return (this.length == 0); }
     public boolean exists(T item) { return (this.find(item) != -1); }
+    public T first() { return (!this.isEmpty()) ? (T)this.data[0]             : null; }
+    public T last()  { return (!this.isEmpty()) ? (T)this.data[this.length-1] : null; }
 
     //----------------------------------------
     private void rightShift(int start)
