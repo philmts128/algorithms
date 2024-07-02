@@ -26,7 +26,7 @@ public class Array<T> implements Iterable<T>
     }
 
     //----------------------------------------
-    Array(T... items)
+    Array(@SuppressWarnings("unchecked") T... items)
     {
         var len = items.length;
         this.length = len;
@@ -87,6 +87,7 @@ public class Array<T> implements Iterable<T>
     }
 
     //----------------------------------------
+    @SuppressWarnings("unchecked")
     public T removeBack()
     {
         if (this.length == 0)
@@ -103,6 +104,7 @@ public class Array<T> implements Iterable<T>
     }
 
     //----------------------------------------
+    @SuppressWarnings("unchecked")
     public T removeFront()
     {
         if (this.length == 0)
@@ -120,6 +122,7 @@ public class Array<T> implements Iterable<T>
     }
 
     //----------------------------------------
+    @SuppressWarnings("unchecked")
     public T remove(int index)
     {
         if (index < 0 || index >= this.length)
@@ -146,6 +149,7 @@ public class Array<T> implements Iterable<T>
     }
 
     //----------------------------------------
+    @SuppressWarnings("unchecked")
     public T get(int index)
     {
         if (index < 0 || index >= this.length)
@@ -155,6 +159,7 @@ public class Array<T> implements Iterable<T>
     }
 
     //----------------------------------------
+    @SuppressWarnings("unchecked")
     public int find(T item)
     {
         for (int i = 0; i < this.length; ++i) {
@@ -171,7 +176,10 @@ public class Array<T> implements Iterable<T>
     public int length()      { return this.length; }
     public boolean isEmpty() { return (this.length == 0); }
     public boolean exists(T item) { return (this.find(item) != -1); }
+    
+    @SuppressWarnings("unchecked")
     public T first() { return (!this.isEmpty()) ? (T)this.data[0]             : null; }
+    @SuppressWarnings("unchecked")
     public T last()  { return (!this.isEmpty()) ? (T)this.data[this.length-1] : null; }
 
     //----------------------------------------
@@ -206,6 +214,7 @@ public class Array<T> implements Iterable<T>
     }
 
     //----------------------------------------
+    @SuppressWarnings("unchecked")
     private void reserve(int cap, T... data)
     {
         this.reserve(cap);
@@ -243,10 +252,10 @@ public class Array<T> implements Iterable<T>
     {
         //----------------------------------------
         private int index = 0;
-        private Array array = null;
+        private Array<T> array = null;
 
         //----------------------------------------
-        ArrayIt(Array arr) { this.array = arr; }
+        ArrayIt(Array<T> arr) { this.array = arr; }
 
         @Override
         public boolean hasNext() { return (index < this.array.length()); }
