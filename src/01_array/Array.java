@@ -12,10 +12,10 @@ import java.util.NoSuchElementException;
 public class Array<T> implements Iterable<T>
 {
     //----------------------------------------
-    private final int MUL_CAP = 8;
-    private Object[] data = null;
-    private int length;
-    private int capacity;
+    protected final int MUL_CAP = 8;
+    protected Object[] data = null;
+    protected int length;
+    protected int capacity;
 
     //----------------------------------------
     Array()
@@ -23,6 +23,14 @@ public class Array<T> implements Iterable<T>
         this.length = 0;
         this.capacity = MUL_CAP;
         this.reserve(this.capacity);
+    }
+
+    //----------------------------------------
+    Array(Array<T> other)
+    {
+        this.data = other.data;
+        this.length = other.length;
+        this.capacity = other.capacity;
     }
 
     //----------------------------------------
@@ -238,6 +246,13 @@ public class Array<T> implements Iterable<T>
         }
 
         this.data = ndata;
+    }
+
+    //----------------------------------------
+    @Override
+    public String toString()
+    {
+        return "";
     }
 
     //----------------------------------------
